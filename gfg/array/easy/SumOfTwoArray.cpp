@@ -36,13 +36,13 @@ void sumTwoArrays(int arr1[], int m, int arr2[], int n)
 }
 
 // By using carry method
-void sumTwoArrays2(int arr1[], int m, int arr2[], int n)
-{
-    int i = m-1;
-    int j = n-1;
-    int carry = 0;
+// void sumTwoArrays2(int arr1[], int m, int arr2[], int n)
+// {
+//     int i = m-1;
+//     int j = n-1;
+//     int carry = 0;
 
-}
+// }
 
 int main()
 {
@@ -50,7 +50,7 @@ int main()
     int arr2[1] = {6};
 
     sumTwoArrays(arr1, 4, arr2, 1);
-    sumTwoArrays2(arr1, 4, arr2, 1);
+    // sumTwoArrays2(arr1, 4, arr2, 1);
 
 
 }
