@@ -20,7 +20,6 @@ void findPalindrome(string str)
 {
     // function to find palindrome in given string O()
     cout << "Palindromes in string "<< str << " are  --> ";
-    int ptr1 = 0, ptr = 0;
     for(int i = 0; i< str.length(); i++)
     {
         for(int j = i+1; j< str.length(); j++)
