@@ -12,6 +12,7 @@ void printArray(int arr[], int size){
 }
 
 int countPrimeOn(int n)
+//sieve of arestothenes
 {
     // count primes from 0 to n in Logn2 time complexity
     int count = 0;
