@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 void printArray(int arr[], int size){
@@ -6,6 +7,16 @@ void printArray(int arr[], int size){
     for(int i=0; i < size; i++)
     {
         cout<< arr[i] << " ";
+    }
+    cout <<endl<< "-----" << endl;
+}
+
+void printVector(vector <int> vec){
+    int size = vec.size();
+    cout << "Printing vector -->" <<endl;
+    for(int i=0; i < size; i++)
+    {
+        cout<< vec[i] << " ";
     }
     cout <<endl<< "-----" << endl;
 }

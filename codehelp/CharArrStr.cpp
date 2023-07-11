@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
 // #include <stack>
 using namespace std;
 
@@ -38,7 +39,7 @@ void countFrequency(string s)
 {
 
 }
-s
+
 // alphabetically count the number of frequency of letter in words
 void countFrequencyAlphabetically(string s)
 {
@@ -175,23 +176,54 @@ int strLen(char elem[])
     return len;
 }
 
+void subSequenceOfStr(string temp, string output, int index, vector<string>& ans)
+{
+    // base case
+    if(index >= temp.length())
+    {
+        ans.push_back(output);
+        return;
+    }
+
+    // exclude
+    subSequenceOfStr(temp, output, index+1, ans);
+
+    //include
+    output += temp[index];
+    subSequenceOfStr(temp, output, index+1, ans);
+}
+
 int main()
 {
     // '\0' is null, placed at end of every string in char array
     //  like -> Pawar --> |P|a|w|a|r|\0|||||||||...
-    char name[20];
-    cout << "Enter Name -> ";
-    cin >> name;
-    // name[3] = '\0'; 
+    // char name[20];
+    // cout << "Enter Name -> ";
+    // cin >> name;
+    // // name[3] = '\0'; 
 
-    int len = strLen(name);
-    cout << "Length -> "<< len <<endl;
-    cout << "isPalidrome -> "<< checkPalindrome(name, len) << endl;
-    tolowercase(name, len);
-    cout << "to Lowercase -> "<< name << endl;
+    // int len = strLen(name);
+    // cout << "Length -> "<< len <<endl;
+    // cout << "isPalidrome -> "<< checkPalindrome(name, len) << endl;
+    // tolowercase(name, len);
+    // cout << "to Lowercase -> "<< name << endl;
 
-    string str("aaabbbcccdee");
-    cout <<endl<< "reverseStrNotWords -->"<< reverseStrNotWords(str) << endl;
-    mostRepeatedCharofStr(str);
-    countFrequencyAlphabetically(str);
+    // string str("aaabbbcccdee");
+    // cout <<endl<< "reverseStrNotWords -->"<< reverseStrNotWords(str) << endl;
+    // mostRepeatedCharofStr(str);
+    // countFrequencyAlphabetically(str);
+
+    string temp = "abc";
+    sort(temp.begin(), temp.end());
+    vector<string> ans;
+    string output = "";
+    int index = 0;
+    subSequenceOfStr(temp, output, index, ans);
+
+    // printVector(ans);
+    for(int i = 0 ; i < ans.size(); i++)
+    {
+        cout << ans[i]<< " ";
+    }
+
 }

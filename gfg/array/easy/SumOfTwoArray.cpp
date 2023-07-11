@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../default_funcs.cpp"
+#include <vector>
 using namespace std;
 
 void sumTwoArrays(int arr1[], int m, int arr2[], int n)
@@ -36,21 +37,55 @@ void sumTwoArrays(int arr1[], int m, int arr2[], int n)
 }
 
 // By using carry method
-// void sumTwoArrays2(int arr1[], int m, int arr2[], int n)
-// {
-//     int i = m-1;
-//     int j = n-1;
-//     int carry = 0;
+int sumTwoArraysByCarry(int arr1[], int m, int arr2[], int n)
+{
+    int i = 0, j = 0;
+    int carry = 0;
+    vector <int> ans;
+    
+    while(i<m && j<n)
+    {
+        int sum = arr1[m-i-1]+arr2[n-j-1]+carry;
+        ans.push_back(sum%10);
+        carry = sum >= 10 ? 1 : 0;
+        i++; j++;
+    }
 
-// }
+    while(i<m)
+    {
+        int sum = arr1[m-i-1]+carry;
+        ans.push_back(sum%10);
+        carry = 0;
+        i++;
+    }
+
+    while(j<n)
+    {
+        int sum = arr2[n-j-1]+carry;
+        ans.push_back(sum%10);
+        carry = 0;
+        j++;
+    }
+
+    // printVector(ans);
+    int temp = 0;
+    for(int i = ans.size()-1; i >= 0; i--)
+    {
+        int digit = ans[i];
+        temp = temp*10 + digit;
+    }
+
+    return temp;
+}
 
 int main()
 {
-    int arr1[4] = {1, 2, 3, 4};
-    int arr2[1] = {6};
+    int arr1[3] = {5, 1, 2};
+    int arr2[6] = {1, 0, 0, 0, 0, 0};
 
-    sumTwoArrays(arr1, 4, arr2, 1);
-    // sumTwoArrays2(arr1, 4, arr2, 1);
+    // sumTwoArrays(arr1, 4, arr2, 1);
+    cout <<"sumTwoArraysByCarry(arr1, 4, arr2, 1)-> "<< sumTwoArraysByCarry(arr1, 3, arr2, 6);
+
 
 
 }

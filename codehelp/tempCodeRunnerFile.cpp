@@ -1,4 +1,2 @@
-    // if(i <= s.length())
-            // {
-            //     temp = temp + '_';
-            // }
+ // if(arr[i] < pivotIndex && arr[j] > pivotIndex)
+        // {

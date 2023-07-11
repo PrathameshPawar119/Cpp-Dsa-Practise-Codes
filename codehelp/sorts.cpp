@@ -1,7 +1,18 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-int SelectionSort(int arr[], int size){
+void printArr(int* arr,  int size)
+{
+    cout << endl << "printArray-->"<<endl;
+    for (int i = 0; i < size; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+// galat he ye vala ?
+void SelectionSort(int arr[], int size){
     for (int i = 0; i < size-1; i++){
         for (int j = i; j < size; j++){
             if (arr[j] < arr[i])
@@ -12,14 +23,11 @@ int SelectionSort(int arr[], int size){
             } 
         }      
     }
-    for (int i = 0; i < size; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    return 0;
+    printArr(arr, size);
 }
 
-int BubbeSort(int arr[], int size){
+
+void BubbeSort(int arr[], int size){
     for (int i = 1; i < size; i++)  // this loop runs for an whole iteration
     {
         for (int j = 0; j < size-i; j++)  // this loop is inner iterations which runs for n-1 times
@@ -32,12 +40,7 @@ int BubbeSort(int arr[], int size){
             }           
         }       
     }
-    for (int i = 0; i < size; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    
-    return 0;
+    printArr(arr, size);
 }
 
 void InsertionSort(int arr[], int size){
@@ -53,28 +56,149 @@ void InsertionSort(int arr[], int size){
         arr[previous+1] = current; //inside loop we down the previous, so 
                                     // after while loop we regain previous+1 = current
     }
-    for (int i = 0; i < size; i++)
-    {
-        cout << arr[i] << " ";
-    }
+    printArr(arr, size);
 }
 
+// engine of mergeSort function
+void merge(int* arr, int s , int e, int& conversions)
+{
+    int mid = (s+e)/2;
+    int len1 = mid-s+1;
+    int len2 = e-mid;
 
-int main(){
-    int size;
-    int arr[size];
-    cout << "Enter Size: ";
-    cin >> size;
-    for (int i = 0; i < size; i++)
+    int* left = new int [len1];
+    int* right = new int [len2];
+
+    int mainArrayIndex = s;
+    for(int i=0; i<len1; i++)
     {
-        cin >> arr[i];
+        left[i] = arr[mainArrayIndex++];
+    }
+    mainArrayIndex = mid+1;
+    for(int i=0; i<len2; i++)
+    {
+        right[i] = arr[mainArrayIndex++];
     }
 
-    cout << "Selection Sort: ";
-    SelectionSort(arr, size);
-    cout << endl << "Bubble Sort  : ";
-    BubbeSort(arr, size);
-    cout << endl << "Insertion Sort: ";
-     InsertionSort(arr, size);
+
+    // now merge 2 sorted arrays
+    int index1 = 0;
+    int index2 = 0;
+    mainArrayIndex = s;
+
+    while(index1 < len1 && index2 < len2)
+    {
+        if(left[index1] < right[index2])
+        {
+            arr[mainArrayIndex++] = left[index1++];
+        }
+        else{
+            arr[mainArrayIndex++] = right[index2++];
+            conversions += len1-index1;
+        }
+    }
+
+    while(index1 < len1)
+    {
+        arr[mainArrayIndex++] = left[index1++];
+    }
+    while(index2 < len2)
+    {
+        arr[mainArrayIndex++] = right[index2++];
+    }
+
+
+    delete [] left;
+    delete [] right;
+
+}
+// merge sort (divide and conquer)
+void mergeSort(int* arr, int s, int e, int& conversions)
+{
+    // base condition
+    if( s >= e) return; // single element is already sorted so return;
+
+    int mid = (s+e)/2;
+
+    //merge left part
+    mergeSort(arr, s, mid, conversions);
+
+    // merge right part
+    mergeSort(arr, mid+1, e, conversions);
+
+    merge(arr, s, e, conversions);
+
+}
+
+int partition(int* arr, int l, int h)
+{
+    int pivot = arr[l];
+    int count = 0;
+    for(int i=l+1; i < h; i++)
+    {
+        if(arr[i] <= pivot) count++;
+    }
+
+    int pivotIndex = l+count;
+    swap( arr[pivotIndex], arr[l]);
+    
+    int i=l, j = h;
+    while(arr[i] < pivotIndex && arr[j] > pivotIndex)
+    {
+        while(arr[i] <= pivot)
+        {
+            i++;
+        }
+        while(arr[j] > pivot)
+        {
+            j--;
+        }
+
+        //  when above both loops stops workinh
+        if(arr[i] < pivotIndex && arr[j] > pivotIndex)
+        {
+            swap(arr[i++], arr[j--]);
+        }
+    }
+    
+    return pivotIndex;
+
+}
+
+void quickSort(int* arr, int l, int h)
+{
+    if(l >= h) return;
+
+    int pivot = partition(arr, l, h);
+
+    // left part of partition
+    quickSort(arr, l, pivot-1);
+
+    // right part of partition
+    quickSort(arr, pivot+1, h);
+}
+
+int main(){
+    int arr[8] = {24, 18, 38, 43, 14, 40, 1, 54};
+    // int arr[4] = {1, 5, 12, 3};
+    int size = 8;
+
+    // cout << "Selection Sort: ";
+    // SelectionSort(arr, size);
+    // cout << endl << "Bubble Sort  : ";
+    // BubbeSort(arr, size);
+    // cout << endl << "Insertion Sort: ";
+    // InsertionSort(arr, size);
+
+    // int conversions = 0;
+    // cout << "merge sort : " ;
+    // mergeSort(arr, 0, size-1, conversions);
+    // printArr(arr, size);
+    // cout << "inversion_count -> "<<conversions<< endl;
+
+    cout << "QuickSort : ";
+    quickSort(arr, 0 , size);
+    printArr(arr, size);
+
 
 }
