@@ -2,54 +2,48 @@
 #include <vector>
 using namespace std;
 
-void printArray(int arr[], int size){
-    cout << "Printing array -->" <<endl;
+void printVector(vector <int> vec){
+    int size = vec.size();
+    cout << "Printing vector -->" <<endl;
     for(int i=0; i < size; i++)
     {
-        cout<< arr[i] << " ";
+        cout<< vec[i] << " ";
     }
     cout <<endl<< "-----" << endl;
 }
-     bool countEvenOdds(string s)
-    {
-        int arr[26] = {0};
-        for(int i=0; i<s.length(); i++)
-        {
-            int index = s[i] - 'a';
-            arr[index] += 1;
-        }
-        printArray(arr, 26);
-        
-        int evens = 0, odds = 0, alphabets = 0;
-        for(int i=0; i<26; i++)
-        {
-            if(arr[i]%2 == 0)
-            {
-                evens++;
-            }
-            else{
-                odds++;
-            }
-            if(arr[i]!=0)
-            {
-                alphabets++;
-            }
-        }
-        cout << " alphs- "<<alphabets<<endl;
-        
-        if(odds > 1 || evens < alphabets-1)
-        {
-            return false;
-        }
-            cout << evens << "-"<<odds<< endl;
-        return true;
-    }
 
-int main() {
-    // Example usage
-    // vector<int> p = {4, 5, 2, 6};
-    // vector<int> h = {1, 3, 2, 4};
-    cout << "countEvenOdds--> " << countEvenOdds("bbcbabccw") << endl;
+int maxSumWithSingleDistance(int arr[], int size)
+{
+    int max = 0;
+    for(int i = -1; i < size/2; i++)
+    {
+        int sum = 0;
+        for(int j = i+1; j < size; j += 2)
+        {
+            sum += arr[j];
+        }
+        if(sum > max)
+        {
+            cout << sum<<" ";
+            max = sum;
+        }
+    }
+    return max;
+
+}
+
+
+int main()
+{
+    // int arr[9] = {2, 5, 20, 10, 55, 34, 45, 25, 100};
+    // cout<< "maximum--> "<< maxSumWithSingleDistance(arr, 9);
+    vector<int> vec = {2, 5};
+
+    printVector(vec);
+
+    vec.erase(vec.begin()+0, vec.begin()+2);
+    vec.insert(vec.begin()+0, 111);
+
+    printVector(vec);
     
-    return 0;
 }

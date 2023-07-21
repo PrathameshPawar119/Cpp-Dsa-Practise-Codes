@@ -153,13 +153,13 @@ void spiralPrint(int arr[][4], int rows, int cols)
      }
 
     //  //reverse rows
-    //  for(int i=0; i<cols/2; i++)
-    //  {
-    //     for(int j=0; j<cols; j++)
-    //     {
-    //         swap(matrix[i][j], matrix[i][cols-i-1]);
-    //     }
-    //  }
+     for(int i=0; i<cols/2; i++)
+     {
+        for(int j=0; j<cols; j++)
+        {
+            swap(matrix[i][j], matrix[i][cols-i-1]);
+        }
+     }
 
 }
 
@@ -192,6 +192,29 @@ bool binarySearch2dArr(int arr[][4], int rows, int cols, int target)
     return 0;
 }
 
+int SumOfDiagonals(int arr[][4], int rows, int cols)
+{
+    int d1 = 0, d2 = 0;
+    for(int i=0; i<rows; i++)
+    {
+        for(int j = 0; j<cols; j++)
+        {
+            if(i == j)
+            {
+                d1 += arr[i][j];
+            }
+        }
+    }
+
+    int i = 0, j = cols-1;
+    while(i< rows && j >= 0)
+    {
+        d2 += arr[i++][j--];
+    }
+
+    return d2;
+}
+
 int main()
 {
     int arr2[3][4] = {0};
@@ -206,6 +229,7 @@ int main()
     print2DArray(arr2, 3, 4);
 
     cout << "is 7 present --> "<< binarySearch2dArr(arr2, 3, 4 ,7) << endl;
+    cout << "SubOfDiagonals --> "<< SumOfDiagonals(arr2, 3, 4) << endl;
 
 
 

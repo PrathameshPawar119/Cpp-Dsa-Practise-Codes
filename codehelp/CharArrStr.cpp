@@ -95,12 +95,15 @@ void mostRepeatedCharofStr(string s)
         {
             max = abcd[i];
             charPosition = i;
+            
+            char ans = charPosition + 'a';
+            cout << ans;
         }
     }
 
     // get char from positoin from array
-    char ans = charPosition + 'a';
-    cout <<endl<< ans << " repeated atmost " << max << " times" <<endl;
+    // char ans = charPosition + 'a';
+    // cout <<endl<< ans << " repeated atmost " << max << " times" <<endl;
 }
 
 string reverseStrNotWords(string s)
@@ -208,22 +211,22 @@ int main()
     // tolowercase(name, len);
     // cout << "to Lowercase -> "<< name << endl;
 
-    // string str("aaabbbcccdee");
+    string str("aaabbbcccccccdee");
     // cout <<endl<< "reverseStrNotWords -->"<< reverseStrNotWords(str) << endl;
-    // mostRepeatedCharofStr(str);
+    mostRepeatedCharofStr(str);
     // countFrequencyAlphabetically(str);
 
-    string temp = "abc";
-    sort(temp.begin(), temp.end());
-    vector<string> ans;
-    string output = "";
-    int index = 0;
-    subSequenceOfStr(temp, output, index, ans);
+    // string temp = "abc";
+    // sort(temp.begin(), temp.end());
+    // vector<string> ans;
+    // string output = "";
+    // int index = 0;
+    // subSequenceOfStr(temp, output, index, ans);
 
-    // printVector(ans);
-    for(int i = 0 ; i < ans.size(); i++)
-    {
-        cout << ans[i]<< " ";
-    }
+    // // printVector(ans);
+    // for(int i = 0 ; i < ans.size(); i++)
+    // {
+    //     cout << ans[i]<< " ";
+    // }
 
 }

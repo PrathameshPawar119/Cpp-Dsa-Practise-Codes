@@ -21,6 +21,16 @@ void printVector(vector <int> vec){
     cout <<endl<< "-----" << endl;
 }
 
+void printStrVector(vector <string> vec){
+    int size = vec.size();
+    cout << "Printing vector -->" <<endl;
+    for(int i=0; i < size; i++)
+    {
+        cout<< vec[i] << " ";
+    }
+    cout <<endl<< "-----" << endl;
+}
+
 int BS(int arr[], int s, int e, int target)
 {
     while(s<e)
