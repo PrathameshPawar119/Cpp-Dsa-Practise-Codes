@@ -11,17 +11,17 @@ void printArr(int* arr,  int size)
     cout << endl;
 }
 
-// galat he ye vala ?
 void SelectionSort(int arr[], int size){
     for (int i = 0; i < size-1; i++){
+        int min_pos = 0, min = arr[0];
         for (int j = i; j < size; j++){
             if (arr[j] < arr[i])
             {
-                int temp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = temp;
+               min = arr[j];
+               min_pos = j;
             } 
-        }      
+        }  
+        swap(arr[i], arr[min_pos]);    
     }
     printArr(arr, size);
 }
@@ -88,12 +88,15 @@ void merge(int* arr, int s , int e, int& conversions)
 
     while(index1 < len1 && index2 < len2)
     {
-        if(left[index1] < right[index2])
+        if(left[index1] <= right[index2])
         {
             arr[mainArrayIndex++] = left[index1++];
         }
         else{
             arr[mainArrayIndex++] = right[index2++];
+
+            // len1-index1 gives total number of elements from left greater current element of right
+            // as total left elements greater than current right represents count inversions required
             conversions += len1-index1;
         }
     }
@@ -179,7 +182,7 @@ void quickSort(int* arr, int l, int h)
 }
 
 int main(){
-    int arr[8] = {24, 18, 38, 43, 14, 40, 1, 54};
+    int arr[8] = {1, 2, 3, 4, 5, 6, 8, 7};
     // int arr[4] = {1, 5, 12, 3};
     int size = 8;
 
@@ -190,13 +193,13 @@ int main(){
     // cout << endl << "Insertion Sort: ";
     // InsertionSort(arr, size);
 
-    // int conversions = 0;
-    // cout << "merge sort : " ;
-    // mergeSort(arr, 0, size-1, conversions);
-    // printArr(arr, size);
-    // cout << "inversion_count -> "<<conversions<< endl;
+    int conversions = 0;
+    cout << "merge sort  " ;
+    mergeSort(arr, 0, size-1, conversions);
+    printArr(arr, size);
+    cout << "inversion_count -> "<<conversions<< endl;
 
-    cout << "QuickSort : ";
+    cout << "QuickSort  ";
     quickSort(arr, 0 , size);
     printArr(arr, size);
 
