@@ -11,6 +11,7 @@ void printArr(int* arr,  int size)
     cout << endl;
 }
 
+// O(n^2) <=
 void SelectionSort(int arr[], int size){
     for (int i = 0; i < size-1; i++){
         int min_pos = 0, min = arr[0];
@@ -26,7 +27,7 @@ void SelectionSort(int arr[], int size){
     printArr(arr, size);
 }
 
-
+// >= O(n^2)
 void BubbeSort(int arr[], int size){
     for (int i = 1; i < size; i++)  // this loop runs for an whole iteration
     {
@@ -43,6 +44,7 @@ void BubbeSort(int arr[], int size){
     printArr(arr, size);
 }
 
+// O(n^2) <=
 void InsertionSort(int arr[], int size){
     for (int i = 1; i < size; i++)
     { 

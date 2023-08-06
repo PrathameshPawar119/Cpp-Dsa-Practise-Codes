@@ -36,7 +36,7 @@ void possibleKeyLetters(string nums, int index, string output, vector<string>& a
 
 int main()
 {
-    string nums = "23";
+    string nums = "233";
     string mapping[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     vector<string> ans;
     string output = "";

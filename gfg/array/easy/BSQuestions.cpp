@@ -68,8 +68,6 @@ int PeakInMountain(int* arr, int size)
 
 }
 
-int AggressiveCows()
-
 
 int main()
 {
