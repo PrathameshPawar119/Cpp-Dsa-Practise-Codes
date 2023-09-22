@@ -1,1 +1,2 @@
-            cout << sum<<" ";
+ad -> "<< head->data << endl;
+    cout << "tail -> "<< t
