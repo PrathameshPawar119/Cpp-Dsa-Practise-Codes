@@ -13,7 +13,11 @@ string decimalToBinary(int n)
     return ans;
 }
 
+<<<<<<< HEAD
 void ReverseBinary(string& binary) // this is 32 bit reverse
+=======
+void ReverseBinary(string& binary)
+>>>>>>> e472a299320487c84230dd2702ddbc2e5f9f5abd
 {
     for(int i = binary.length(); i < 32; i++)
     {
